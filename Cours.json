@@ -1,0 +1,16 @@
+[
+  {
+    "IdCours": 1,
+    "Nom": "Mathematique",
+    "Description": "********************",
+    "Filiere": "Genie Logiciel",
+    "Prof": "Traor\u00E9 Issa"
+  },
+  {
+    "IdCours": 2,
+    "Nom": "Java",
+    "Description": "**************************",
+    "Filiere": "Genie logiciel",
+    "Prof": "Diarra Oumar"
+  }
+]

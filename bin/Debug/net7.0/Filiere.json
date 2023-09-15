@@ -1,0 +1,17 @@
+[
+  {
+    "IdFiliere": 1,
+    "Nom": "Genie Logiciel",
+    "Description": "developpement de logiciel"
+  },
+  {
+    "IdFiliere": 2,
+    "Nom": "MIAGE",
+    "Description": "Informatique de gestions"
+  },
+  {
+    "IdFiliere": 3,
+    "Nom": "Economie",
+    "Description": "Economie global \u0026\u0026 comptabilit\u00E9"
+  }
+]

@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Prof Page";
+}
+@model examenC_.Models.Prof
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">gestion des Professeurs</h1>
+</div>
+<br><br>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Ajouter
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog   modal-dialog-centered rounded-5">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un Prof</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Submit", "Prof", FormMethod.Post))
+                {
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Nom)
+                        @Html.TextBoxFor(model => model.Nom,new { @class = "form-control" })
+                    </div>
+
+                    <br />
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Prenom)
+                        @Html.TextBoxFor(model => model.Prenom,new { @class = "form-control" })
+                    </div>
+
+                    <br />
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Email)
+                        @Html.TextBoxFor(model => model.Email,new { @class = "form-control" })
+                    </div>
+
+                    <br />
+
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prof in (List<Prof>)ViewData["profs"])
+        {
+            <tr>
+                <th>@prof.IdProf</th>
+                <td>@prof.Nom</td>
+                <td>@prof.Prenom</td>
+                <td>@prof.Email</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{@prof.IdProf}">
+                        Editer
+                    </button>
+
+                    <a class="btn btn-danger" href="@Url.Action("Supprimer", "Prof", new { Id = prof.IdProf })"
+                        role="button">Supprimer</a>
+
+                    <div class="modal fade" id="exampleModal{@prof.IdProf}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog   modal-dialog-centered rounded-5">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editer le prof @prof.Nom
+                                        @prof.Prenom</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("Editer", "Prof", FormMethod.Post))
+                                    {
+
+                                        @Html.HiddenFor(m => @prof.IdProf)
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => @prof.Nom)
+                                            @Html.TextBoxFor(m => @prof.Nom, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => @prof.Prenom)
+                                            @Html.TextBoxFor(m => @prof.Prenom, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => @prof.Email)
+                                            @Html.TextBoxFor(m => @prof.Email, new { @class = "form-control" })
+                                        </div>
+
+                                        <br />
+
+                                        <div class="form-group">
+                                            <input type="submit" value="Editer" class="btn btn-primary" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,7 @@
+.menuItem:hover {
+    border-bottom: 2px solid;
+}
+
+.menuActice {
+    border-bottom: 2px solid;
+}

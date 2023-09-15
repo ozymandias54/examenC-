@@ -1,0 +1,20 @@
+[
+  {
+    "IdProf": 1,
+    "Nom": "Traore",
+    "Prenom": "Issa",
+    "Email": "issa@traore"
+  },
+  {
+    "IdProf": 2,
+    "Nom": "Diarra",
+    "Prenom": "Oumar",
+    "Email": "diarra@oumar"
+  },
+  {
+    "IdProf": 3,
+    "Nom": "Moussa",
+    "Prenom": "Kon\u00E9",
+    "Email": "kone@moussa"
+  }
+]

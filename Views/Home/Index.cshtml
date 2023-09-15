@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Filiere Page";
+}
+@model examenC_.Models.Filiere
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">gestion des Filière</h1>
+</div>
+<br><br>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Ajouter
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog   modal-dialog-centered rounded-5">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une Filiere</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Submit", "Home", FormMethod.Post))
+                {
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Nom)
+                        @Html.TextBoxFor(model => model.Nom,new { @class = "form-control" })
+                    </div>
+
+                    <br />
+
+                    <div class="mb-3">
+                        @Html.LabelFor(model => model.Description)
+                        @Html.TextBoxFor(model => model.Description,new { @class = "form-control" })
+                    </div>
+
+                    <br />
+
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var filiere in (List<Filiere>)ViewData["filieres"])
+        {
+            <tr>
+                <th>@filiere.IdFiliere</th>
+                <td>@filiere.Nom</td>
+                <td>@filiere.Description</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{@filiere.IdFiliere}">
+                        Editer
+                    </button>
+
+                    <a class="btn btn-danger" href="@Url.Action("Supprimer", "Home", new { Id = filiere.IdFiliere })"
+                        role="button">Supprimer</a>
+
+                    <div class="modal fade" id="exampleModal{@filiere.IdFiliere}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog   modal-dialog-centered rounded-5">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editer la Filiere @filiere.Nom</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("Editer", "Home", FormMethod.Post))
+                                    {
+
+                                        @Html.HiddenFor(m => @filiere.IdFiliere)
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => @filiere.Nom)
+                                            @Html.TextBoxFor(m => @filiere.Nom, new { @class = "form-control" })
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => @filiere.Description)
+                                            @Html.TextBoxFor(m => @filiere.Description, new { @class = "form-control" })
+                                        </div>
+
+                                        <br />
+
+                                        <div class="form-group">
+                                            <input type="submit" value="Editer" class="btn btn-primary" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
